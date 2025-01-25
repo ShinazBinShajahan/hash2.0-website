@@ -3,7 +3,7 @@ import "./globals.css"
 
 export const metadata: Metadata = {
   title: "HASH 2.0",
-  description: "Technical Fest 2025",
+  description: "Annual Techno-Cultural fest of CSE department - MBCCET",
 }
 
 export default function RootLayout({
