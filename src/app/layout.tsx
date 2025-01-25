@@ -5,7 +5,7 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "HASH 2.0 - Technical Fest 2025",
+  title: "HASH 2.0",
   description: "Annual Techno-Cultural fest of CSE department - MBCCET",
   icons: {
     icon: [
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     apple: [{ url: "/hash.png" }],
   },
   openGraph: {
-    title: "HASH 2.0 - Technical Fest 2025",
+    title: "HASH 2.0",
     description: "Annual Techno-Cultural fest of CSE department - MBCCET",
     url: "https://hash2025.vercel.app",
     siteName: "HASH 2.0",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "HASH 2.0 - Technical Fest 2025",
+    title: "HASH 2.0",
     description: "Annual Techno-Cultural fest of CSE department - MBCCET",
     images: ["/hash.png"],
   },
