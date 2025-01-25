@@ -18,7 +18,7 @@ export default function Home() {
           src="/bg-image.png"
           alt="Background"
           fill
-          className="object-contain object-center opacity-40"
+          className="object-cover object-center opacity-40"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
