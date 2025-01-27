@@ -15,7 +15,7 @@ export default function Home() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src={window.innerWidth < 768 ? "/bg-mobile.png" : "/bg-image.png"}
+          src={mounted && innerWidth < 768 ? "/bg-mobile.png" : "/bg-image.png"}
           alt="Background"
           layout="fill"
           className="md:object-contain object-contain object-center opacity-40"
