@@ -1,32 +1,34 @@
-"use client"
+"use client";
 
-import React, { useEffect, useState } from "react"
-import Image from "next/image"
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Home() {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/bg-image.png"
+          src={window.innerWidth < 768 ? "/bg-mobile.png" : "/bg-image.png"}
           alt="Background"
-          fill
-          className="object-contain object-center opacity-40"
+          layout="fill"
+          className="md:object-contain object-contain object-center opacity-40"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-black/60 to-transparent" />
       </div>
 
       {/* Main Content */}
       <div
-        className={`relative z-10 text-center transition-all duration-1000 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+        className={`relative z-10 text-center transition-all duration-1000 ${
+          mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
       >
         {/* HASH 2.0 Logo */}
         <div className="relative w-[240px] h-[120px] md:w-[400px] md:h-[200px] mx-auto mb-12">
@@ -76,15 +78,21 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="absolute bottom-0 left-0 right-0 bg-black py-4 text-center">
-        <p className="text-gray-400 text-sm md:text-base">Annual Techno-Cultural fest of CSE department - MBCCET</p>
+        <p className="text-gray-400 text-sm md:text-base">
+          Annual Techno-Cultural fest of CSE department - MBCCET
+        </p>
       </footer>
     </main>
-  )
+  );
 }
 
 const BinaryText = () => (
   <>
-    <span className="binary-text text-red-500/70">{"01001000 01000001 01010011 01001000 ".repeat(3)}</span>
-    <span className="binary-text text-white/40">{"00100000 00110010 00101110 00110000 ".repeat(3)}</span>
+    <span className="binary-text text-red-500/70">
+      {"01001000 01000001 01010011 01001000 ".repeat(3)}
+    </span>
+    <span className="binary-text text-white/40">
+      {"00100000 00110010 00101110 00110000 ".repeat(3)}
+    </span>
   </>
-)
+);
