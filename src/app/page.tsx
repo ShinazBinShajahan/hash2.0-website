@@ -58,7 +58,7 @@ export default function Home() {
           <div className="relative inline-block">
             <div className="absolute inset-0 bg-red-600/20 blur-md"></div>
             <p className="relative text-white text-xl md:text-3xl font-bold tracking-[0.2em] px-6 py-3 bg-black/50 backdrop-blur-sm border-t-2 border-b-2 border-red-600/50">
-              FEBRUARY 15, 2025
+              FEBRUARY 15 2025
             </p>
           </div>
         </div>
