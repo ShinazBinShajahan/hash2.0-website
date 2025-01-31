@@ -79,7 +79,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="absolute bottom-0 left-0 right-0 bg-black py-4 text-center">
         <p className="text-gray-400 text-sm md:text-base">
-          Annual Techno-Cultural fest of CSE department - MBCCET
+          Annual Techno-Cultural fest of CSE department,  MBCCET
         </p>
       </footer>
     </main>
