@@ -418,8 +418,6 @@ class App {
       this.camera,
       new SMAAEffect({
         preset: SMAAPreset.MEDIUM,
-        searchImage: SMAAEffect.searchImageDataURL,
-        areaImage: SMAAEffect.areaImageDataURL,
       })
     );
     this.renderPass.renderToScreen = false;
