@@ -375,7 +375,21 @@ const Hyperspeed = ({
       timeOffset: number;
       renderPass: RenderPass = new RenderPass;
       bloomPass: EffectPass = new EffectPass;
-      constructor(container: HTMLElement | null, options: { distortion?: any } = {}) {
+      constructor(container: HTMLElement | null, options: {
+        fov: any;
+        movingCloserSpeed: any;
+        carLightsFade: number;
+        movingAwaySpeed: any;
+        length: number;
+        colors: any; distortion?: any 
+} = {
+  fov: undefined,
+  movingCloserSpeed: undefined,
+  carLightsFade: 0,
+  movingAwaySpeed: undefined,
+  length: 0,
+  colors: undefined
+}) {
         this.options = options;
         if (!options.distortion) {
           options.distortion = {
@@ -389,17 +403,17 @@ const Hyperspeed = ({
           alpha: true,
         });
         this.renderer.setSize(
-          container.offsetWidth,
-          container.offsetHeight,
+          this.container?.offsetWidth ?? 0,
+          this.container?.offsetHeight ?? 0,
           false
         );
         this.renderer.setPixelRatio(window.devicePixelRatio);
         this.composer = new EffectComposer(this.renderer);
-        container.append(this.renderer.domElement);
+        this.container?.append(this.renderer.domElement);
 
         this.camera = new THREE.PerspectiveCamera(
-          options.fov,
-          container.offsetWidth / container.offsetHeight,
+          options.distortion?.fov ?? 60,
+          this.container?.offsetWidth ?? 0 / (this.container?.offsetHeight ?? 1),
           0.1,
           10000
         );
@@ -467,9 +481,7 @@ const Hyperspeed = ({
         const smaaPass = new EffectPass(
           this.camera,
           new SMAAEffect({
-            preset: SMAAPreset.MEDIUM,
-            searchImage: SMAAEffect.searchImageDataURL,
-            areaImage: SMAAEffect.areaImageDataURL,
+            preset: SMAAPreset.MEDIUM
           })
         );
         this.renderPass.renderToScreen = false;
@@ -479,66 +491,66 @@ const Hyperspeed = ({
         this.composer.addPass(this.bloomPass);
         this.composer.addPass(smaaPass);
       }
-
       loadAssets() {
         const assets = this.assets;
-        return new Promise((resolve) => {
-          const manager = new THREE.LoadingManager(resolve);
-
+        return new Promise<void>((resolve) => {
+          const manager = new THREE.LoadingManager(() => resolve());
+      
           const searchImage = new Image();
           const areaImage = new Image();
-          assets.smaa = {};
+          // Initialize assets.smaa if it doesn't exist
+          if (!('smaa' in assets)) {
+            (assets as any).smaa = { search: null, area: null };
+          }
           searchImage.addEventListener("load", function () {
-            assets.smaa.search = this;
+            (assets as any).smaa.search = this;
             manager.itemEnd("smaa-search");
           });
-
           areaImage.addEventListener("load", function () {
-            assets.smaa.area = this;
+            (assets as any).smaa.area = this;
             manager.itemEnd("smaa-area");
           });
+      
           manager.itemStart("smaa-search");
           manager.itemStart("smaa-area");
-
+      
           searchImage.src = SMAAEffect.searchImageDataURL;
           areaImage.src = SMAAEffect.areaImageDataURL;
         });
       }
+      
 
       init() {
         this.initPasses();
         const options = this.options;
         this.road.init();
         this.leftCarLights.init();
-
-        this.leftCarLights.mesh.position.setX(
-          -options.roadWidth / 2 - options.islandWidth / 2
+        this.leftCarLights.mesh?.position.setX(
+          -((options as any).roadWidth / 2 + (options as any).islandWidth / 2)
         );
         this.rightCarLights.init();
-        this.rightCarLights.mesh.position.setX(
-          options.roadWidth / 2 + options.islandWidth / 2
+        this.rightCarLights.mesh?.position.setX(
+          (options as any).roadWidth / 2 + (options as any).islandWidth / 2
         );
         this.leftSticks.init();
         this.leftSticks.mesh.position.setX(
-          -(options.roadWidth + options.islandWidth / 2)
+          -((options as any).roadWidth + (options as any).islandWidth / 2)
         );
 
-        this.container.addEventListener("mousedown", this.onMouseDown);
-        this.container.addEventListener("mouseup", this.onMouseUp);
-        this.container.addEventListener("mouseout", this.onMouseUp);
+        this.container?.addEventListener("mousedown", this.onMouseDown);
+        this.container?.addEventListener("mouseup", this.onMouseUp);
+        this.container?.addEventListener("mouseout", this.onMouseUp);
 
         this.tick();
       }
-
       onMouseDown(ev: any) {
-        if (this.options.onSpeedUp) this.options.onSpeedUp(ev);
-        this.fovTarget = this.options.fovSpeedUp;
-        this.speedUpTarget = this.options.speedUp;
+        if ((this.options as any).onSpeedUp) (this.options as any).onSpeedUp(ev);
+        this.fovTarget = (this.options as any).fovSpeedUp;
+        this.speedUpTarget = (this.options as any).speedUp;
       }
-
       onMouseUp(ev: any) {
-        if (this.options.onSlowDown) this.options.onSlowDown(ev);
-        this.fovTarget = this.options.fov;
+        if ((this.options as any).onSlowDown) (this.options as any).onSlowDown(ev);
+        this.fovTarget = (this.options as any).fov;
         this.speedUpTarget = 0;
       }
 
@@ -566,8 +578,8 @@ const Hyperspeed = ({
           updateCamera = true;
         }
 
-        if (this.options.distortion.getJS) {
-          const distortion = this.options.distortion.getJS(0.025, time);
+        if ((this.options as any).distortion?.getJS) {
+          const distortion = (this.options as any).distortion.getJS(0.025, time);
 
           this.camera.lookAt(
             new THREE.Vector3(
@@ -582,8 +594,8 @@ const Hyperspeed = ({
           this.camera.updateProjectionMatrix();
         }
 
-        if (this.options.isHyper) {
-          console.log(this.options.isHyper);
+        if ((this.options as any).isHyper) {
+          console.log((this.options as any).isHyper);
         }
       }
 
@@ -665,8 +677,8 @@ const Hyperspeed = ({
       colors: any;
       speed: any;
       fade: THREE.Vector2;
-      mesh: THREE.Mesh<THREE.InstancedBufferGeometry, THREE.ShaderMaterial, THREE.Object3DEventMap>;
-      constructor(webgl: this, options: {}, colors: any, speed: any, fade: THREE.Vector2) {
+      mesh: THREE.Mesh<THREE.InstancedBufferGeometry, THREE.ShaderMaterial, THREE.Object3DEventMap> | undefined;
+      constructor(webgl: any, options: {}, colors: any, speed: any, fade: THREE.Vector2) {
         this.webgl = webgl;
         this.options = options;
         this.colors = colors;
@@ -681,11 +693,12 @@ const Hyperspeed = ({
           new THREE.Vector3(0, 0, -1)
         );
         const geometry = new THREE.TubeGeometry(curve, 40, 1, 8, false);
+        const instanced = new THREE.InstancedBufferGeometry();
+        instanced.attributes = geometry.attributes;
+        instanced.index = geometry.index;
+        instanced.instanceCount = (this.options as any).lightPairsPerRoadWay * 2;
 
-        const instanced = new THREE.InstancedBufferGeometry().copy(geometry);
-        instanced.instanceCount = options.lightPairsPerRoadWay * 2;
-
-        const laneWidth = options.roadWidth / options.lanesPerRoad;
+        const laneWidth = (this.options as any).roadWidth / (this.options as any).lanesPerRoad;
 
         const aOffset = [];
         const aMetrics = [];
@@ -698,20 +711,19 @@ const Hyperspeed = ({
           colors = new THREE.Color(colors);
         }
 
-        for (let i = 0; i < options.lightPairsPerRoadWay; i++) {
-          const radius = random(options.carLightsRadius);
-          const length = random(options.carLightsLength);
+        for (let i = 0; i < (this.options as any).lightPairsPerRoadWay; i++) {
+          const radius = random((this.options as any).carLightsRadius);
+          const length = random((this.options as any).carLightsLength); 
           const speed = random(this.speed);
 
-          const carLane = i % options.lanesPerRoad; // Fix lane assignment to spread across lanes
+          const carLane = i % (this.options as any).lanesPerRoad; // Fix lane assignment to spread across lanes
           let laneX =
-            carLane * laneWidth - options.roadWidth / 2 + laneWidth / 2;
-
-          const carWidth = random(options.carWidthPercentage) * laneWidth;
-          const carShiftX = random(options.carShiftX) * laneWidth;
+            carLane * laneWidth - (this.options as any).roadWidth / 2 + laneWidth / 2;
+          const carWidth = random((this.options as any).carWidthPercentage) * laneWidth;
+          const carShiftX = random((this.options as any).carShiftX) * laneWidth;
           laneX += carShiftX;
 
-          const offsetY = random(options.carFloorSeparation) + radius * 1.3;
+          const offsetY = random((this.options as any).carFloorSeparation) + radius * 1.3;
 
           const offsetZ = -random(options.length);
 
