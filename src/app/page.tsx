@@ -1,98 +1,112 @@
 "use client";
-
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-
-export default function Home() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
+import React from "react";
+import Hyperspeed from "./components/landing";
+import EventSlider from "./components/EventSlider";
+import eventsData from "./data/events.json";
+import DecryptedText from "./components/ui/decryptedText";
+const Home = () => {
   return (
-    <main className="relative min-h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src={mounted && innerWidth < 768 ? "/bg-mobile.png" : "/bg-image.png"}
-          alt="Background"
-          layout="fill"
-          className="md:object-contain object-contain object-center opacity-40"
-          priority
+    <>
+      <div className="w-full h-full relative min-h-[100vh] bg-black">
+        <Hyperspeed
+          effectOptions={{
+            onSpeedUp: () => {},
+            onSlowDown: () => {},
+            distortion: "mountainDistortion",
+            length: 400,
+            roadWidth: 9,
+            islandWidth: 2,
+            lanesPerRoad: 3,
+            fov: 90,
+            fovSpeedUp: 150,
+            speedUp: 2,
+            carLightsFade: 0.4,
+            totalSideLightSticks: 50,
+            lightPairsPerRoadWay: 50,
+            shoulderLinesWidthPercentage: 0.05,
+            brokenLinesWidthPercentage: 0.1,
+            brokenLinesLengthPercentage: 0.5,
+            lightStickWidth: [0.12, 0.5],
+            lightStickHeight: [1.3, 1.7],
+            movingAwaySpeed: [60, 80],
+            movingCloserSpeed: [-120, -160],
+            carLightsLength: [400 * 0.05, 400 * 0.15],
+            carLightsRadius: [0.05, 0.14],
+            carWidthPercentage: [0.3, 0.5],
+            carShiftX: [-0.2, 0.2],
+            carFloorSeparation: [0.05, 1],
+            colors: {
+              roadColor: 0x080808,
+              islandColor: 0x0a0a0a,
+              background: 0x000000,
+              shoulderLines: 0x131318,
+              brokenLines: 0x131318,
+              leftCars: [0xff102a, 0xeb383e, 0xff102a],
+              rightCars: [0xdadafa, 0xbebae3, 0x8f97e4],
+              sticks: 0xdadafa,
+            },
+          }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-black/60 to-transparent" />
       </div>
 
-      {/* Main Content */}
       <div
-        className={`relative z-10 text-center transition-all duration-1000 ${
-          mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}
+        id="events"
+        className="w-full bg-gray-950 py-16 relative overflow-hidden border-b border-red-900/30"
       >
-        {/* HASH 2.0 Logo */}
-        <div className="relative w-[240px] h-[120px] md:w-[400px] md:h-[200px] mx-auto mb-12">
-          <div className="absolute inset-0 blur-3xl bg-red-600/20 rounded-full group-hover:bg-red-600/30 transition-all duration-700" />
-          <Image
-            src="/hash.png"
-            alt="HASH 2.0"
-            fill
-            className="object-contain drop-shadow-[0_0_30px_rgba(220,38,38,0.4)] group-hover:drop-shadow-[0_0_40px_rgba(220,38,38,0.5)] transition-all duration-700"
-            priority
+        {/* Background Effects */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#aa000015,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent,#ff000008,transparent)]" />
+
+        {/* Decorative Lines */}
+        <div className="absolute left-4 top-0 h-full w-px bg-gradient-to-b from-transparent via-red-600 to-transparent" />
+        <div className="absolute right-4 top-0 h-full w-px bg-gradient-to-b from-transparent via-red-600 to-transparent" />
+
+        {/* Corner Accents */}
+        <div className="absolute left-2 top-2 w-8 h-8 border-l-2 border-t-2 border-red-700" />
+        <div className="absolute right-2 top-2 w-8 h-8 border-r-2 border-t-2 border-red-700" />
+        <div className="absolute left-2 bottom-2 w-8 h-8 border-l-2 border-b-2 border-red-700" />
+        <div className="absolute right-2 bottom-2 w-8 h-8 border-r-2 border-b-2 border-red-700" />
+
+        {/* Main Content Container */}
+        <div className="relative z-10 w-full text-center">
+          {/* Small top text */}
+          <p className="text-red-600/50 text-center text-sm mb-2 font-['Chakra_Petch'] tracking-[0.3em] uppercase">
+            HASH 2025
+          </p>
+
+          <DecryptedText
+            text="Games and Events"
+            speed={50}
+            revealDirection="center"
+            useOriginalCharsOnly={false}
+            animateOn="view"
+            sequential={true}
+            maxIterations={20}
+            characters="ABCD1234!?"
+            className="revealed w-full font-['Chakra_Petch'] text-2xl md:text-3xl lg:text-5xl font-bold text-red-600 text-center tracking-wider [text-shadow:0_0_10px_rgba(220,0,0,0.3)]"
+            parentClassName="all-letters"
+            encryptedClassName="encrypted"
           />
+
+          {/* Decorative line below text */}
+          <div className="mt-4 mx-auto w-32 h-px bg-gradient-to-r from-transparent via-red-600 to-transparent" />
         </div>
 
-        {/* Redesigned Bottom Section */}
-        <div className="space-y-10 relative">
-          {/* Coming Soon with Darker Glitch Effect */}
-          <div className="glitch-container">
-            <h2
-              className="text-4xl md:text-7xl text-gray-200 font-bold tracking-widest glitch layers"
-              data-text="COMING SOON"
-            >
-              COMING SOON
-            </h2>
-          </div>
-
-          {/* Improved Date Display */}
-          <div className="relative inline-block">
-            <div className="absolute inset-0 bg-red-600/20 blur-md"></div>
-            <p className="relative text-white text-xl md:text-3xl font-bold tracking-[0.2em] px-6 py-3 bg-black/50 backdrop-blur-sm border-t-2 border-b-2 border-red-600/50">
-              FEBRUARY 15 2025
-            </p>
-          </div>
+        {/* Diagonal corner lines */}
+        <div className="absolute left-0 top-0 w-16 h-16">
+          <div className="absolute left-0 top-0 w-full h-0.5 bg-gradient-to-r from-red-600 to-transparent transform origin-left rotate-45" />
         </div>
+        <div className="absolute right-0 top-0 w-16 h-16">
+          <div className="absolute right-0 top-0 w-full h-0.5 bg-gradient-to-l from-red-600 to-transparent transform origin-right -rotate-45" />
+        </div>
+
+        {/* Animated pulse effect */}
+        <div className="absolute inset-0 animate-pulse" />
       </div>
 
-      {/* Enhanced Binary Marquee */}
-      <div className="absolute bottom-16 left-0 right-0 overflow-hidden">
-        <div className="relative h-16">
-          <div className="absolute bottom-0 left-0 right-0 h-full flex items-center bg-gradient-to-t from-black via-black/90 to-transparent">
-            <div className="animate-scroll whitespace-nowrap flex items-center">
-              <BinaryText />
-              <BinaryText />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <footer className="absolute bottom-0 left-0 right-0 bg-black py-4 text-center">
-        <p className="text-gray-400 text-sm md:text-base">
-          Annual Techno-Cultural fest of CSE department,  MBCCET
-        </p>
-      </footer>
-    </main>
+      <EventSlider events={eventsData.events} />
+    </>
   );
-}
+};
 
-const BinaryText = () => (
-  <>
-    <span className="binary-text text-red-500/70">
-      {"01001000 01000001 01010011 01001000 ".repeat(3)}
-    </span>
-    <span className="binary-text text-white/40">
-      {"00100000 00110010 00101110 00110000 ".repeat(3)}
-    </span>
-  </>
-);
+export default Home;

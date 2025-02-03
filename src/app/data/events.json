@@ -1,0 +1,39 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "title": "Freefire",
+      "date": "Registration started from 03-02-2025",
+      "url": "",
+      "image": "/events/freefire.jpg"
+    },
+    {
+      "id": 2,
+      "title": "FIFA Tournament",
+      "date": "Registration started from 03-02-2025",
+      "url": "",
+      "image": "/events/fifa.jpg"
+    },
+    {
+      "id": 3,
+      "title": "BGMI",
+      "date": "Registration started from 03-02-2025",
+      "url": "",
+      "image": "/events/bgmi.jpg"
+    },
+    {
+      "id": 4,
+      "title": "PES Tournament",
+      "date": "Registration started from 03-02-2025",
+      "url": "",
+      "image": "/events/pes.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Valorant",
+      "date": "Registration started from 03-02-2025",
+      "url": "",
+      "image": "/events/valorant.jpg"
+    }
+  ]
+}
