@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/prefer-as-const */
 "use client";
 import { useEffect, useState, useRef, ReactNode } from "react";
@@ -59,7 +60,7 @@ export default function DecryptedText({
   const containerRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    let interval: number;
+    let interval: NodeJS.Timeout | undefined;
     let currentIteration = 0;
 
     const getNextIndex = (revealedSet: Set<number>): number => {

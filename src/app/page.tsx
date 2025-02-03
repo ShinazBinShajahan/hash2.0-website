@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Hyperspeed from "./components/landing";
 import EventSlider from "./components/EventSlider";
@@ -7,10 +8,51 @@ const Home = () => {
   return (
     <>
       <div className="w-full h-full relative min-h-[100vh] bg-black">
-        <Hyperspeed />
+        <Hyperspeed
+          effectOptions={{
+            onSpeedUp: () => {},
+            onSlowDown: () => {},
+            distortion: "mountainDistortion",
+            length: 400,
+            roadWidth: 9,
+            islandWidth: 2,
+            lanesPerRoad: 3,
+            fov: 90,
+            fovSpeedUp: 150,
+            speedUp: 2,
+            carLightsFade: 0.4,
+            totalSideLightSticks: 50,
+            lightPairsPerRoadWay: 50,
+            shoulderLinesWidthPercentage: 0.05,
+            brokenLinesWidthPercentage: 0.1,
+            brokenLinesLengthPercentage: 0.5,
+            lightStickWidth: [0.12, 0.5],
+            lightStickHeight: [1.3, 1.7],
+            movingAwaySpeed: [60, 80],
+            movingCloserSpeed: [-120, -160],
+            carLightsLength: [400 * 0.05, 400 * 0.15],
+            carLightsRadius: [0.05, 0.14],
+            carWidthPercentage: [0.3, 0.5],
+            carShiftX: [-0.2, 0.2],
+            carFloorSeparation: [0.05, 1],
+            colors: {
+              roadColor: 0x080808,
+              islandColor: 0x0a0a0a,
+              background: 0x000000,
+              shoulderLines: 0x131318,
+              brokenLines: 0x131318,
+              leftCars: [0xff102a, 0xeb383e, 0xff102a],
+              rightCars: [0xdadafa, 0xbebae3, 0x8f97e4],
+              sticks: 0xdadafa,
+            },
+          }}
+        />
       </div>
 
-      <div  id="events"  className="w-full bg-gray-950 py-16 relative overflow-hidden border-b border-red-900/30">
+      <div
+        id="events"
+        className="w-full bg-gray-950 py-16 relative overflow-hidden border-b border-red-900/30"
+      >
         {/* Background Effects */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#aa000015,transparent_70%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent,#ff000008,transparent)]" />
