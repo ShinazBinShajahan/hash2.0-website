@@ -636,7 +636,7 @@ const Hyperspeed = ({
         this.fovTarget = (this.options as any).fov;
         this.speedUpTarget = 0;
       }
-
+//hellooooooo
       update(delta: number) {
         const lerpPercentage = Math.exp(-(-60 * Math.log2(1 - 0.1)) * delta);
         this.speedUp += lerp(
