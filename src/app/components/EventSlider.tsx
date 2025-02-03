@@ -21,7 +21,7 @@ const EventSlider: React.FC<EventSliderProps> = ({ events }) => {
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
-      const scrollAmount = 340; // card width + gap
+      const scrollAmount = 200; // card width + gap
       const maxScroll = container.scrollWidth - container.clientWidth;
       const currentScroll = container.scrollLeft;
       
@@ -50,7 +50,7 @@ const EventSlider: React.FC<EventSliderProps> = ({ events }) => {
     const startAutoScroll = () => {
       autoScrollIntervalRef.current = window.setInterval(() => {
         scroll('right');
-      }, 3000);
+      }, 5000);
     };
 
     const stopAutoScroll = () => {
@@ -80,7 +80,7 @@ const EventSlider: React.FC<EventSliderProps> = ({ events }) => {
   }, []);
 
   return (
-    <div className="relative w-full py-8">
+    <div className="relative w-full pb-8">
       {/* Left Arrow */}
       <button 
         onClick={() => scroll('left')}
