@@ -10,7 +10,7 @@ const Home = () => {
         <Hyperspeed />
       </div>
 
-      <div className="w-full bg-gray-950 py-16 relative overflow-hidden border-b border-red-900/30">
+      <div  id="events"  className="w-full bg-gray-950 py-16 relative overflow-hidden border-b border-red-900/30">
         {/* Background Effects */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#aa000015,transparent_70%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent,#ff000008,transparent)]" />

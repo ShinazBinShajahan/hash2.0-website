@@ -1245,11 +1245,18 @@ const Hyperspeed = ({
             <div className="flex gap-3 mb-8">
               <button className="group flex items-center justify-center bg-red-600 text-white rounded px-6 py-2.5 hover:bg-red-700 transition-all active:scale-95">
                 <Play className="w-4 h-4 mr-2" fill="currentColor" />
-                <span className="text-sm font-medium">Events</span>
+                <span className="text-sm font-medium" onClick={() => window.scrollTo({ top: document.getElementById('events').offsetTop, behavior: 'smooth' })}>Events</span>
               </button>
               <button className="group flex items-center justify-center bg-black/50 backdrop-blur-sm text-white rounded px-6 py-2.5 border border-white/20 hover:bg-white/10 transition-all active:scale-95">
                 <Info className="w-4 h-4 mr-2" />
-                <span className="text-sm font-medium">More Info</span>
+                <span
+                  className="text-sm font-medium"
+                  onClick={() => {
+                    window.open("https://www.instagram.com/hashtech2.0");
+                  }}
+                >
+                  More Info
+                </span>
               </button>
             </div>
 
