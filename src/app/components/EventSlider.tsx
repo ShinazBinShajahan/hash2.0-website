@@ -119,11 +119,7 @@ const EventSlider: React.FC<EventSliderProps> = ({ events }) => {
               <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
                 <h3 className="text-lg md:text-xl font-bold mb-2">{event.title}</h3>
                 <p className="text-sm mb-3">
-                  {new Date(event.date).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
+                  {event.date}
                 </p>
                 <a 
                   href={event.url}
