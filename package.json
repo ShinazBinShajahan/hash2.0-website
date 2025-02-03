@@ -14,13 +14,14 @@
     "postprocessing": "^6.36.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "three": "^0.173.0"
+    "three": "^0.172.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.173.0",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
     "postcss": "^8",
