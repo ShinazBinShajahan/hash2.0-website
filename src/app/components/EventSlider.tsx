@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 import React, { useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -16,7 +17,7 @@ interface EventSliderProps {
 
 const EventSlider: React.FC<EventSliderProps> = ({ events }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const autoScrollIntervalRef = useRef<number>();
+  const autoScrollIntervalRef = useRef<number | undefined>(undefined);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
