@@ -600,7 +600,7 @@ class CarLights {
       new THREE.Vector3(0, 0, -1)
     );
     const geometry = new THREE.TubeGeometry(curve, 40, 1, 8, false);
-    const instanced = new THREE.InstancedBufferGeometry().copy(geometry);
+    const instanced = new THREE.InstancedBufferGeometry().copy(geometry as any);
     instanced.instanceCount = options.lightPairsPerRoadWay * 2;
 
     const laneWidth = options.roadWidth / options.lanesPerRoad;
@@ -693,7 +693,8 @@ class LightsSticks {
   init() {
     const options = this.options;
     const geometry = new THREE.PlaneGeometry(1, 1);
-    const instanced = new THREE.InstancedBufferGeometry().copy(geometry);
+    // Cast geometry as any to bypass the type check
+    const instanced = new THREE.InstancedBufferGeometry().copy(geometry as any);
     const totalSticks = options.totalSideLightSticks;
     instanced.instanceCount = totalSticks;
 
