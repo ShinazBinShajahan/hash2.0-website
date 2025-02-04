@@ -6,6 +6,8 @@ import eventsData from "./data/events.json";
 import AboutContent from "./components/About";
 import Header from "./components/Header";
 import EventsPage from "./components/EventsPage";
+
+
 const Home = () => {
   return (
     <>
@@ -54,9 +56,8 @@ const Home = () => {
       <Header id="events" heading="Games and Events" />
 
       <div className="container mx-auto px-4">
-        { eventsData.events.length >= 5 && <EventSlider events={eventsData.events.slice(0,5)} /> }
+        {eventsData.events.length >= 5 && <EventSlider events={eventsData.events.slice(0, 5)} showViewMore={true} />}
       </div>
-      <EventsPage />
     </>
   );
 };

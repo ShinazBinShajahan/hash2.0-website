@@ -24,23 +24,6 @@ const EventsPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-950">
-      {/* Hero Section with Slider */}
-      <section className="relative w-full py-16">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#aa000015,transparent_70%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent,#ff000008,transparent)]" />
-        
-        {/* Corner Accents */}
-        <div className="absolute left-2 top-2 w-8 h-8 border-l-2 border-t-2 border-red-700" />
-        <div className="absolute right-2 top-2 w-8 h-8 border-r-2 border-t-2 border-red-700" />
-        
-        <div className="container mx-auto px-4">
-          <h1 className="text-red-600 text-4xl md:text-5xl font-bold text-center mb-8 font-['Chakra_Petch'] tracking-wider">
-            Featured Events
-          </h1>
-          {events.length >= 5 && <EventSlider events={events.slice(0, 5)} />}
-        </div>
-      </section>
-
       {/* All Events Grid */}
       <section className="relative w-full py-16 px-4" id="events">
         <div className="container mx-auto">
