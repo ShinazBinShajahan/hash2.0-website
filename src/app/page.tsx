@@ -5,14 +5,15 @@ import EventSlider from "./components/EventSlider";
 import eventsData from "./data/events.json";
 import AboutContent from "./components/About";
 import Header from "./components/Header";
+import EventsPage from "./components/EventsPage";
 const Home = () => {
   return (
     <>
       <div className="w-full h-full relative min-h-[100vh] bg-black">
         <Hyperspeed
           effectOptions={{
-            onSpeedUp: () => {},
-            onSlowDown: () => {},
+            onSpeedUp: () => { },
+            onSlowDown: () => { },
             distortion: "mountainDistortion",
             length: 400,
             roadWidth: 9,
@@ -52,7 +53,10 @@ const Home = () => {
       <AboutContent />
       <Header id="events" heading="Games and Events" />
 
-      <EventSlider events={eventsData.events} />
+      <div className="container mx-auto px-4">
+        { eventsData.events.length >= 5 && <EventSlider events={eventsData.events.slice(0,5)} /> }
+      </div>
+      <EventsPage />
     </>
   );
 };

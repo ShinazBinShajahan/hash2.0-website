@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import React, { useRef, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, StepForward } from 'lucide-react';
+import Link from 'next/link';
 
 interface Event {
   id: number;
@@ -133,6 +134,22 @@ const EventSlider: React.FC<EventSliderProps> = ({ events }) => {
             </div>
           </div>
         ))}
+
+        {/* View More Card */}
+        <Link
+          href="#events"
+          className="flex-none w-[280px] md:w-[320px] group relative cursor-pointer transition-transform duration-300 hover:scale-105"
+        >
+          <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-gray-900 border-2 border-dashed border-red-600/30 hover:border-red-600/50 transition-colors duration-300">
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4">
+              <StepForward  size={48} className="mb-4 text-red-600" />
+              <h3 className="text-lg md:text-xl font-bold text-center mb-2">View More Events</h3>
+              <p className="text-sm text-gray-400 text-center">
+                Discover all available events and tournaments
+              </p>
+            </div>
+          </div>
+        </Link>
       </div>
     </div>
   );
