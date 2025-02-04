@@ -4,14 +4,15 @@ import Hyperspeed from "./components/landing";
 import EventSlider from "./components/EventSlider";
 import eventsData from "./data/events.json";
 import DecryptedText from "./components/ui/decryptedText";
+import About from "./components/About"
 const Home = () => {
   return (
     <>
       <div className="w-full h-full relative min-h-[100vh] bg-black">
         <Hyperspeed
           effectOptions={{
-            onSpeedUp: () => {},
-            onSlowDown: () => {},
+            onSpeedUp: () => { },
+            onSlowDown: () => { },
             distortion: "mountainDistortion",
             length: 400,
             roadWidth: 9,
@@ -105,6 +106,7 @@ const Home = () => {
       </div>
 
       <EventSlider events={eventsData.events} />
+      <About />
     </>
   );
 };
