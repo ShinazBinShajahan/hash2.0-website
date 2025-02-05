@@ -2,17 +2,8 @@
 'use client'
 import React from 'react';
 import { Calendar } from 'lucide-react';
-import EventSlider from '../components/EventSlider'; // Adjust the import based on your project structure
 import eventsData from '../data/events.json';
 import Image from 'next/image';
-
-interface Event {
-  id: number;
-  title: string;
-  date: string;
-  url: string;
-  image: string;
-}
 
 const EventsPage = () => {
   const events = eventsData?.events || [];

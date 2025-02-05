@@ -5,7 +5,6 @@ import EventSlider from "./components/EventSlider";
 import eventsData from "./data/events.json";
 import AboutContent from "./components/About";
 import Header from "./components/Header";
-import EventsPage from "./components/EventsPage";
 
 
 const Home = () => {

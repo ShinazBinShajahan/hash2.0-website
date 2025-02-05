@@ -1,15 +1,8 @@
 import React from 'react';
 import { Calendar } from 'lucide-react';
-import EventSlider from './EventSlider';
 import eventsData from "../data/events.json";
+import Image from 'next/image';
 
-interface Event {
-  id: number;
-  title: string;
-  date: string;
-  url: string;
-  image: string;
-}
 
 const EventsPage = () => {
   const events = eventsData?.events || [];
@@ -38,7 +31,7 @@ const EventsPage = () => {
                 className="bg-gray-900 rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
               >
                 <div className="relative h-96">
-                  <img
+                  <Image
                     src={event.image}
                     alt={event.title}
                     className="w-full h-full object-cover"
