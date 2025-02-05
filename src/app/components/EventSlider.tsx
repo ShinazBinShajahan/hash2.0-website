@@ -3,6 +3,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight, StepForward } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Event {
   id: number;
@@ -131,10 +132,11 @@ const EventSlider: React.FC<EventSliderProps> = ({ events, showViewMore }) => {
             className="flex-none w-[280px] md:w-[320px] group relative cursor-pointer transition-transform duration-300 hover:scale-105"
           >
             <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
-              <img
+              <Image
                 src={event.image}
                 alt={event.title}
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-100 group-hover:opacity-90 transition-opacity duration-300" />
               <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
