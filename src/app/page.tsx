@@ -5,6 +5,8 @@ import EventSlider from "./components/EventSlider";
 import eventsData from "./data/events.json";
 import AboutContent from "./components/About";
 import Header from "./components/Header";
+import GridMotion from "./components/Gridmotion";
+import DecryptedText from "./components/ui/decryptedText";
 
 
 const Home = () => {
@@ -57,8 +59,30 @@ const Home = () => {
       <div className="container mx-auto px-4">
         {eventsData.events.length >= 5 && <EventSlider events={eventsData.events.slice(0, 5)} showViewMore={true} />}
       </div>
+      <div className="w-full bg-gray-950 py-16 pt-8 relative overflow-hidden text-center h-32">
+        {/* Background Effects */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,#aa000015,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent,#ff000008,transparent)]" />
+
+        <DecryptedText
+          text="Pro-Show"
+          speed={50}
+          revealDirection="center"
+          useOriginalCharsOnly={false}
+          animateOn="view"
+          sequential={true}
+          maxIterations={20}
+          characters="ABCD1234!?"
+          className="revealed w-full font-['Chakra_Petch'] text-2xl md:text-3xl lg:text-5xl font-bold text-red-600 text-center tracking-wider [text-shadow:0_0_10px_rgba(220,0,0,0.3)]"
+          parentClassName="all-letters"
+          encryptedClassName="encrypted"
+        />
+      </div>
+      <GridMotion />
     </>
   );
 };
+
+
 
 export default Home;
