@@ -15,21 +15,20 @@ interface Event {
 
 interface EventSliderProps {
   events: Event[];
-  showViewMore?: boolean; // New prop to control visibility of View More card
+  showViewMore?: boolean;
 }
 
 const EventSlider: React.FC<EventSliderProps> = ({ events, showViewMore }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const autoScrollIntervalRef = useRef<number | undefined>(undefined);
   
-  // State to track if we are at the start or end of the slider
   const [isAtStart, setIsAtStart] = useState(true);
   const [isAtEnd, setIsAtEnd] = useState(false);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
-      const scrollAmount = 200; // card width + gap
+      const scrollAmount = 200;
       const maxScroll = container.scrollWidth - container.clientWidth;
       const currentScroll = container.scrollLeft;
 
@@ -37,12 +36,12 @@ const EventSlider: React.FC<EventSliderProps> = ({ events, showViewMore }) => {
       if (direction === 'left') {
         newScrollLeft = currentScroll - scrollAmount;
         if (newScrollLeft < 0) {
-          newScrollLeft = maxScroll; // Loop to end
+          newScrollLeft = maxScroll;
         }
       } else {
         newScrollLeft = currentScroll + scrollAmount;
         if (newScrollLeft > maxScroll) {
-          newScrollLeft = 0; // Loop to start
+          newScrollLeft = 0;
         }
       }
       
@@ -53,7 +52,6 @@ const EventSlider: React.FC<EventSliderProps> = ({ events, showViewMore }) => {
     }
   };
 
-  // Update arrow visibility based on scroll position
   const updateArrowVisibility = () => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
@@ -62,7 +60,6 @@ const EventSlider: React.FC<EventSliderProps> = ({ events, showViewMore }) => {
     }
   };
 
-  // Auto scroll setup
   useEffect(() => {
     const startAutoScroll = () => {
       autoScrollIntervalRef.current = window.setInterval(() => {
@@ -76,31 +73,27 @@ const EventSlider: React.FC<EventSliderProps> = ({ events, showViewMore }) => {
       }
     };
 
-    // Start auto-scroll
     startAutoScroll();
 
-    // Pause on hover
     const container = scrollContainerRef.current;
     if (container) {
       container.addEventListener('mouseenter', stopAutoScroll);
       container.addEventListener('mouseleave', startAutoScroll);
-      container.addEventListener('scroll', updateArrowVisibility); // Listen for scroll events
+      container.addEventListener('scroll', updateArrowVisibility);
     }
 
-    // Cleanup
     return () => {
       stopAutoScroll();
       if (container) {
         container.removeEventListener('mouseenter', stopAutoScroll);
         container.removeEventListener('mouseleave', startAutoScroll);
-        container.removeEventListener('scroll', updateArrowVisibility); // Cleanup listener
+        container.removeEventListener('scroll', updateArrowVisibility);
       }
     };
   }, []);
 
   return (
-    <div className="relative w-full pb-8 scrollbar">
-      {/* Left Arrow */}
+    <div className="relative w-full pb-8">
       {!isAtStart && (
         <button 
           onClick={() => scroll('left')}
@@ -111,7 +104,6 @@ const EventSlider: React.FC<EventSliderProps> = ({ events, showViewMore }) => {
         </button>
       )}
 
-      {/* Right Arrow */}
       {!isAtEnd && (
         <button 
           onClick={() => scroll('right')}
@@ -124,7 +116,7 @@ const EventSlider: React.FC<EventSliderProps> = ({ events, showViewMore }) => {
 
       <div 
         ref={scrollContainerRef}
-        className="flex gap-3 md:gap-4 overflow-x-auto scrollbar-hide pb-4 scroll-smooth"
+        className="flex gap-3 md:gap-4 overflow-x-auto pb-4 scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
       >
         {events.map((event) => (
           <div
@@ -157,7 +149,6 @@ const EventSlider: React.FC<EventSliderProps> = ({ events, showViewMore }) => {
           </div>
         ))}
 
-        {/* Conditionally Render View More Card */}
         {showViewMore && (
           <Link
             href="/events"
