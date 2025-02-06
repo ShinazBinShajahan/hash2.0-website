@@ -1,9 +1,9 @@
-// pages/events/page.tsx
 'use client'
 import React from 'react';
 import { Calendar } from 'lucide-react';
-import eventsData from '../data/events.json';
 import Image from 'next/image';
+import Link from 'next/link';
+import eventsData from '../data/events.json';
 
 const EventsPage = () => {
   const events = eventsData?.events || [];
@@ -20,12 +20,12 @@ const EventsPage = () => {
     <div className="min-h-screen bg-gray-950">
       {/* Hero Section with Slider */}
       <section className="flex items-center justify-center min-h-7 bg-gray-950 py-16 pb-0">
-        <button
-          onClick={() => window.location.href = "/"}
+        <Link 
+          href="/" 
           className="px-6 py-3 bg-red-600 text-white rounded-full text-xl font-bold hover:bg-red-700 transition-colors duration-200"
         >
           Go to Home
-        </button>
+        </Link>
       </section>
 
       {/* All Events Grid */}
@@ -42,13 +42,13 @@ const EventsPage = () => {
                 className="bg-gray-900 rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
               >
                 <div className="relative h-96">
-                <Image
-                src={event.image}
-                alt={event.title}
-                fill
-                loading='lazy'
-                className="object-cover"
-              />
+                  <Image
+                    src={event.image}
+                    alt={event.title}
+                    fill
+                    loading='lazy'
+                    className="object-cover"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent" />
                 </div>
                 

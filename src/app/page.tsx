@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
-import Hyperspeed from "./components/landing";
-import EventSlider from "./components/EventSlider";
+import Hyperspeed from "./_components/landing";
+import EventSlider from "./_components/EventSlider";
 import eventsData from "./data/events.json";
-import AboutContent from "./components/About";
-import Header from "./components/Header";
-import GridMotion from "./components/Gridmotion";
-import DecryptedText from "./components/ui/decryptedText";
+import AboutContent from "./_components/About";
+import Header from "./_components/Header";
+import GridMotion from "./_components/Gridmotion";
+import DecryptedText from "./_components/ui/decryptedText";
 
 
 const Home = () => {
