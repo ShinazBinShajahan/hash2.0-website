@@ -133,7 +133,7 @@ const GridMotion: React.FC<GridMotionProps> = ({
                         {/* Band Name and Title */}
                         <div className="text-center mb-4 md:mb-8">
                             <Link href='https://www.instagram.com/thealttarnad/' className="mx-auto w-64 h-64 rounded-lg overflow-hidden cursor-pointer flex items-center">
-                                <Image src="/band/bandlogo.png" alt="Band Logo" width={256} height={256} className="object-contain" />
+                                <Image src="/band/bandlogo.PNG" alt="Band Logo" width={256} height={256} className="object-contain" />
                             </Link>
                         </div>
 
