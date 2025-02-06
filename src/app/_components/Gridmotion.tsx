@@ -15,7 +15,7 @@ interface GridMotionProps {
 const GridMotion: React.FC<GridMotionProps> = ({
     images = [
         '/band/band1.jpeg',
-        '/band/band2.JPG',
+        '/band/band2.jpg',
         '/band/band3.jpeg',
         '/band/band4.jpeg',
         '/band/band5.jpeg',
