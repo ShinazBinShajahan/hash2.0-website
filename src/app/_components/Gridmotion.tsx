@@ -17,7 +17,7 @@ const GridMotion: React.FC<GridMotionProps> = ({
         '/band/band1.jpeg',
         '/band/band2.JPG',
         '/band/band3.jpeg',
-        '/band/band4.jpg',
+        '/band/band4.jpeg',
         '/band/band5.jpeg',
         '/band/band6.jpeg',
         '/band/band7.jpeg',
