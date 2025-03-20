@@ -50,7 +50,6 @@ const EventsPage = () => {
                   </div>
                   
                   <a
-              <a
   href={event.url}
   target="_blank"
   rel="noopener noreferrer"
