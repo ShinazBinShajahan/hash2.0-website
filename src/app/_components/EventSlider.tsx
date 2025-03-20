@@ -21,7 +21,7 @@ interface EventSliderProps {
 const EventSlider: React.FC<EventSliderProps> = ({ events, showViewMore }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const autoScrollIntervalRef = useRef<number | undefined>(undefined);
-  
+
   const [isAtStart, setIsAtStart] = useState(true);
   const [isAtEnd, setIsAtEnd] = useState(false);
 
@@ -44,7 +44,7 @@ const EventSlider: React.FC<EventSliderProps> = ({ events, showViewMore }) => {
           newScrollLeft = 0;
         }
       }
-      
+
       container.scrollTo({
         left: newScrollLeft,
         behavior: 'smooth'
@@ -95,7 +95,7 @@ const EventSlider: React.FC<EventSliderProps> = ({ events, showViewMore }) => {
   return (
     <div className="relative w-full pb-8">
       {!isAtStart && (
-        <button 
+        <button
           onClick={() => scroll('left')}
           className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 bg-black/30 hover:bg-black/50 p-2 rounded-full backdrop-blur-sm transition-all duration-200 text-white/70 hover:text-white"
           aria-label="Scroll left"
@@ -105,7 +105,7 @@ const EventSlider: React.FC<EventSliderProps> = ({ events, showViewMore }) => {
       )}
 
       {!isAtEnd && (
-        <button 
+        <button
           onClick={() => scroll('right')}
           className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 bg-black/30 hover:bg-black/50 p-2 rounded-full backdrop-blur-sm transition-all duration-200 text-white/70 hover:text-white"
           aria-label="Scroll right"
@@ -114,7 +114,7 @@ const EventSlider: React.FC<EventSliderProps> = ({ events, showViewMore }) => {
         </button>
       )}
 
-      <div 
+      <div
         ref={scrollContainerRef}
         className="flex gap-3 md:gap-4 overflow-x-auto pb-4 scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
       >
@@ -136,14 +136,16 @@ const EventSlider: React.FC<EventSliderProps> = ({ events, showViewMore }) => {
                 <p className="text-sm mb-3">
                   {event.date}
                 </p>
-                <a 
+                <a
                   href={event.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition-colors duration-200"
+                  className="inline-block w-full bg-gray-400 text-gray-200 text-center px-6 py-2 rounded-full font-semibold transition-colors duration-200 cursor-not-allowed"
+                  onClick={(e) => e.preventDefault()} // Prevents clicking
                 >
-                  Register Now
+                  Closed
                 </a>
+
               </div>
             </div>
           </div>
@@ -165,7 +167,7 @@ const EventSlider: React.FC<EventSliderProps> = ({ events, showViewMore }) => {
             </div>
           </Link>
         )}
-        
+
       </div>
     </div>
   );
