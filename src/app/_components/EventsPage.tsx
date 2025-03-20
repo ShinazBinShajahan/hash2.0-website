@@ -50,13 +50,16 @@ const EventsPage = () => {
                   </div>
                   
                   <a
-                    href={event.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block w-full bg-red-600 hover:bg-red-700 text-white text-center px-6 py-2 rounded-full font-semibold transition-colors duration-200"
-                  >
-                    Register Now
-                  </a>
+              <a
+  href={event.url}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-block w-full bg-gray-400 text-gray-200 text-center px-6 py-2 rounded-full font-semibold transition-colors duration-200 cursor-not-allowed"
+  onClick={(e) => e.preventDefault()} 
+>
+  Closed
+</a>
+
                 </div>
               </div>
             ))}
